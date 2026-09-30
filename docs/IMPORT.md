@@ -14,11 +14,11 @@
 
 | 可用性 | URL 模板 |
 | --- | --- |
-| 国内实测可达，实时回源 raw，无缓存（第三方代理服务） | `https://gh-proxy.com/https://raw.githubusercontent.com/{owner}/{repo}/{branch}/<文件路径>` |
-| 国内实测可达，实时回源 raw（gh-proxy 的备用同类服务） | `https://ghproxy.net/https://raw.githubusercontent.com/{owner}/{repo}/{branch}/<文件路径>` |
-| 国内实测可达，走 CDN 有缓存延迟，适合规则稳定后使用 | `https://cdn.jsdelivr.net/gh/{owner}/{repo}@{branch}/<文件路径>` |
-| 同上，jsDelivr 备用节点 | `https://gcore.jsdelivr.net/gh/{owner}/{repo}@{branch}/<文件路径>` |
-| GitHub 官方主源，海外或已翻墙设备首选；不在中国大陆直连（大陆访问被阻断） | `https://raw.githubusercontent.com/{owner}/{repo}/{branch}/<文件路径>` |
+| 国内实测可达，实时回源 raw，无缓存（第三方代理服务） | `https://gh-proxy.com/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/<文件路径>` |
+| 国内实测可达，实时回源 raw（gh-proxy 的备用同类服务） | `https://ghproxy.net/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/<文件路径>` |
+| 国内实测可达，走 CDN 有缓存延迟，适合规则稳定后使用 | `https://cdn.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/<文件路径>` |
+| 同上，jsDelivr 备用节点 | `https://gcore.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/<文件路径>` |
+| GitHub 官方主源，海外或已翻墙设备首选；不在中国大陆直连（大陆访问被阻断） | `https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/<文件路径>` |
 
 把模板里的 `<文件路径>` 换成上表的文件路径即可（例如 `dist/v2ray-rules.json`）。首选 URL 是「国内实测可达」中的第一个；若某个镜像拉取失败或内容陈旧，换表中的另一行重试即可。`dist/urls.json` 里有机器可读的完整 URL 列表。
 

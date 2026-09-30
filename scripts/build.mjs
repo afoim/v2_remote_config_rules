@@ -115,7 +115,14 @@ function renderImportDocs(cfg, sourceRules) {
     .join('\n');
   const primaryTable = `| 文件 | 用途 | 说明 | 首选 URL |\n| --- | --- | --- | --- |\n${rows}`;
   const mirrorRows = cfg.mirrors
-    .map((m) => `| ${m.note} | \`${m.url.replace('{path}', '<文件路径>')}\` |`)
+    .map((m) => {
+      const url = m.url
+        .replace('{owner}', cfg.owner)
+        .replace('{repo}', cfg.repo)
+        .replace('{branch}', cfg.branch)
+        .replace('{path}', '<文件路径>');
+      return `| ${m.note} | \`${url}\` |`;
+    })
     .join('\n');
   const mirrorTable = `| 可用性 | URL 模板 |\n| --- | --- |\n${mirrorRows}`;
   const ruleRows = sourceRules
