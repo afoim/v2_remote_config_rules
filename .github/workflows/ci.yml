@@ -1,0 +1,22 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 校验源数据与产物同步
+        run: node scripts/validate.mjs --check-dist
+      - name: 用官方 Xray 内核校验生成的完整配置
+        run: |
+          curl -fsSL -o xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
+          unzip -q xray.zip -d xray
+          cp dist/xray-client-config.json xray/config.json
+          cd xray && ./xray run -test -c config.json

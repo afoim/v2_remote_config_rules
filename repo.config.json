@@ -1,0 +1,32 @@
+{
+  "owner": "afoim",
+  "repo": "v2_remote_config_rules",
+  "branch": "main",
+  "title": "Xray 远程路由规则与配置",
+  "includeBaseSplit": true,
+  "mirrors": [
+    "https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}",
+    "https://cdn.jsdelivr.net/gh/{owner}/{repo}@{branch}/{path}",
+    "https://gcore.jsdelivr.net/gh/{owner}/{repo}@{branch}/{path}",
+    "https://gh-proxy.com/https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}",
+    "https://ghfast.top/https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}",
+    "https://ghproxy.net/https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}"
+  ],
+  "artifacts": [
+    {
+      "path": "dist/v2ray-rules.json",
+      "label": "路由规则集（增量）",
+      "usage": "v2rayN 路由规则集订阅 URL / v2rayNG 剪贴板、二维码导入"
+    },
+    {
+      "path": "dist/xray-client-config.json",
+      "label": "完整 Xray 客户端配置",
+      "usage": "客户端「自定义配置」直接使用（节点为占位符，需替换）"
+    },
+    {
+      "path": "dist/xray-routing-increment.json",
+      "label": "Xray routing 增量片段",
+      "usage": "手工合并进你已有的 Xray 配置"
+    }
+  ]
+}

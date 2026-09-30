@@ -1,0 +1,11 @@
+{
+  "name": "v2-remote-config-rules",
+  "private": true,
+  "type": "module",
+  "description": "可公网订阅的 Xray / v2rayN / v2rayNG 增量路由规则与客户端配置",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/validate.mjs --check-dist",
+    "validate": "node scripts/validate.mjs"
+  }
+}

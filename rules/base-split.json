@@ -1,0 +1,32 @@
+{
+  "domainStrategy": "IPIfNonMatch",
+  "rules": [
+    {
+      "type": "field",
+      "domain": [
+        "geosite:geolocation-!cn"
+      ],
+      "outboundTag": "proxy"
+    },
+    {
+      "type": "field",
+      "domain": [
+        "geosite:cn"
+      ],
+      "outboundTag": "direct"
+    },
+    {
+      "type": "field",
+      "ip": [
+        "geoip:cn"
+      ],
+      "outboundTag": "direct"
+    },
+    {
+      "type": "field",
+      "port": "0-65535",
+      "network": "tcp,udp",
+      "outboundTag": "proxy"
+    }
+  ]
+}
