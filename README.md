@@ -53,6 +53,21 @@ docs/IMPORT.template.md      导入说明模板（占位符由 build 填充）
 - `npm run check` 校验：字段白名单、出口标签合法性、域名/IP 语法、跨规则出口冲突、重复项、**禁止兜底规则**（保证不会覆盖客户端自带分流）、生成产物结构、`dist/` 是否与源同步。
 - CI（`.github/workflows/ci.yml`）在每次 push 上跑同一套校验，并下载官方 Xray 内核执行 `xray run -test -c dist/xray-client-config.json`，确保发布出去的完整配置能被真实内核解析。
 
+## 分发与镜像
+
+客户端拉取的是**已提交的静态文件**，所以 `dist/` 必须跟着源一起提交，CI 会校验两者同步。
+
+实测（2026-09，中国大陆网络）：
+
+| 地址 | 结果 |
+| --- | --- |
+| `raw.githubusercontent.com` | 域名可解析，TCP 直连立即失败（被阻断） |
+| `gh-proxy.com` / `ghproxy.net` | 可达，实时回源 raw，无缓存；第三方服务 |
+| `cdn.jsdelivr.net` / `gcore.jsdelivr.net` | 可达，有 CDN 缓存延迟 |
+| `ghfast.top` | 超时，已从镜像列表移除 |
+
+因此 `docs/IMPORT.md` 里的首选 URL 指向 `gh-proxy.com`，海外设备可改用 raw 主源。镜像都是第三方，失效时换一行重试即可；客户端拉取失败会保留上一次的规则，不会清空。
+
 ## 边界
 
 - 只在 macOS/Linux/Windows 上验证过数据与 Xray 解析，客户端 UI 步骤以 v2rayN 7.x、v2rayNG 1.10+ 为准。

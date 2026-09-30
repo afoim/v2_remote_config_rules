@@ -5,12 +5,26 @@
   "title": "Xray 远程路由规则与配置",
   "includeBaseSplit": true,
   "mirrors": [
-    "https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}",
-    "https://cdn.jsdelivr.net/gh/{owner}/{repo}@{branch}/{path}",
-    "https://gcore.jsdelivr.net/gh/{owner}/{repo}@{branch}/{path}",
-    "https://gh-proxy.com/https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}",
-    "https://ghfast.top/https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}",
-    "https://ghproxy.net/https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}"
+    {
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}",
+      "note": "国内实测可达，实时回源 raw，无缓存（第三方代理服务）"
+    },
+    {
+      "url": "https://ghproxy.net/https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}",
+      "note": "国内实测可达，实时回源 raw（gh-proxy 的备用同类服务）"
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/gh/{owner}/{repo}@{branch}/{path}",
+      "note": "国内实测可达，走 CDN 有缓存延迟，适合规则稳定后使用"
+    },
+    {
+      "url": "https://gcore.jsdelivr.net/gh/{owner}/{repo}@{branch}/{path}",
+      "note": "同上，jsDelivr 备用节点"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}",
+      "note": "GitHub 官方主源，海外或已翻墙设备首选；不在中国大陆直连（大陆访问被阻断）"
+    }
   ],
   "artifacts": [
     {

@@ -4,9 +4,13 @@
 
 ## 可用文件
 
-{{URLS_TABLE}}
+{{PRIMARY_TABLE}}
 
-镜像地址与主源内容一致（已校验）；中国大陆直连主源不通时换成镜像即可。`dist/urls.json` 里有机器可读的完整 URL 列表。
+### 全部镜像
+
+{{MIRROR_TABLE}}
+
+把模板里的 `<文件路径>` 换成上表的文件路径即可（例如 `dist/v2ray-rules.json`）。首选 URL 是「国内实测可达」中的第一个；若某个镜像拉取失败或内容陈旧，换表中的另一行重试即可。`dist/urls.json` 里有机器可读的完整 URL 列表。
 
 ## 当前规则
 
@@ -58,4 +62,5 @@ v2rayNG 目前**不支持**从 URL 订阅路由规则，只能剪贴板/二维�
 
 - **iOS 上的 Shadowrocket、Stash 等 Clash 系客户端不适用**：本仓库产物是 v2ray/Xray 规则对象，不是 Clash 的 `rule-providers` 格式。iOS 端如需要，另加一份 sing-box `rule_set` 或 Clash 规则集产物。
 - 本文件是**增量**规则集，不含兜底规则；不要指望它能独立完成全部分流。
+- 中国大陆网络下 `raw.githubusercontent.com` 直连被阻断，请用上表中的国内可达镜像；镜像都是第三方服务，失效时换一行即可。
 - 若某条规则需要走另外的出口（例如指定落地节点），把 `rules/source.json` 里的 `outboundTag` 改成你在配置中实际存在的 tag，否则客户端会回退到默认代理出口。

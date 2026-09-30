@@ -106,25 +106,26 @@ function buildXrayConfig(sourceRules, baseSplit, includeBaseSplit) {
 }
 
 const renderUrls = (cfg, path) =>
-  cfg.mirrors.map((t) => t.replace('{owner}', cfg.owner).replace('{repo}', cfg.repo).replace('{branch}', cfg.branch).replace('{path}', path));
+  cfg.mirrors.map((m) => m.url.replace('{owner}', cfg.owner).replace('{repo}', cfg.repo).replace('{branch}', cfg.branch).replace('{path}', path));
 
 function renderImportDocs(cfg, sourceRules) {
   const tpl = readFileSync(join(ROOT, 'docs/IMPORT.template.md'), 'utf8');
-  const urlsFor = (path) => {
-    const list = renderUrls(cfg, path);
-    return [`\`${list[0]}\`（主源）`, ...list.slice(1).map((u) => `\`${u}\``)].join('<br>');
-  };
   const rows = cfg.artifacts
-    .map((a) => `| \`${a.path}\` | ${a.label} | ${a.usage} |\n| | 主源 | ${urlsFor(a.path)} |`)
+    .map((a) => `| \`${a.path}\` | ${a.label} | ${a.usage} | \`${renderUrls(cfg, a.path)[0]}\` |`)
     .join('\n');
-  const table = `| 文件 | 用途 | 说明 |\n| --- | --- | --- |\n${rows}`;
+  const primaryTable = `| 文件 | 用途 | 说明 | 首选 URL |\n| --- | --- | --- | --- |\n${rows}`;
+  const mirrorRows = cfg.mirrors
+    .map((m) => `| ${m.note} | \`${m.url.replace('{path}', '<文件路径>')}\` |`)
+    .join('\n');
+  const mirrorTable = `| 可用性 | URL 模板 |\n| --- | --- |\n${mirrorRows}`;
   const ruleRows = sourceRules
     .map((r) => `| ${r.id} | ${r.remarks} | \`${r.outboundTag}\` | ${r.enabled === false ? '关闭' : '启用'} | ${(r.domain ?? []).length} | ${(r.ip ?? []).length} |`)
     .join('\n');
   const ruleTable = `| 规则 id | 说明 | 出口标签 | 状态 | 域名条数 | IP 条数 |\n| --- | --- | --- | --- | --- | --- |\n${ruleRows}`;
   return tpl
     .replaceAll('{{TITLE}}', cfg.title)
-    .replaceAll('{{URLS_TABLE}}', table)
+    .replaceAll('{{PRIMARY_TABLE}}', primaryTable)
+    .replaceAll('{{MIRROR_TABLE}}', mirrorTable)
     .replaceAll('{{RULES_TABLE}}', ruleTable)
     .replaceAll('{{INCLUDE_BASE_SPLIT}}', cfg.includeBaseSplit ? '是（已内置通用 GeoIP/GeoSite 国内外分流作为兜底）' : '否（只含增量规则，未匹配流量交给客户端自身分流）');
 }
@@ -144,7 +145,18 @@ export function build() {
       rules: expandRules(source.rules).map(toXrayRule),
     },
   };
-  const urls = Object.fromEntries(cfg.artifacts.map((a) => [a.path, { raw: renderUrls(cfg, a.path)[0], mirrors: renderUrls(cfg, a.path).slice(1) }]));
+  const urls = Object.fromEntries(
+    cfg.artifacts.map((a) => {
+      const rendered = renderUrls(cfg, a.path);
+      return [
+        a.path,
+        {
+          primary: rendered[0],
+          mirrors: cfg.mirrors.map((m, i) => ({ note: m.note, url: rendered[i] })),
+        },
+      ];
+    }),
+  );
 
   return {
     'dist/v2ray-rules.json': jar(rulesJson),

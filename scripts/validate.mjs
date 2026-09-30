@@ -131,8 +131,9 @@ function checkClientConfig(cfg) {
 function checkRepoConfig(repo) {
   for (const k of ['owner', 'repo', 'branch']) if (!repo[k]) fail(`repo.config.json: 缺少 ${k}`);
   if (!Array.isArray(repo.mirrors) || !repo.mirrors.length) fail('repo.config.json: mirrors 不能为空');
-  for (const t of repo.mirrors ?? []) {
-    for (const ph of ['{owner}', '{repo}', '{branch}', '{path}']) if (!t.includes(ph)) fail(`repo.config.json: 镜像模板 ${t} 缺少 ${ph}`);
+  for (const m of repo.mirrors ?? []) {
+    if (!m.url || !m.note) fail('repo.config.json: mirrors 每项都需要 url 与 note');
+    for (const ph of ['{owner}', '{repo}', '{branch}', '{path}']) if (!(m.url ?? '').includes(ph)) fail(`repo.config.json: 镜像模板 ${m.url} 缺少 ${ph}`);
   }
   if (typeof repo.includeBaseSplit !== 'boolean') fail('repo.config.json: includeBaseSplit 必须是布尔值');
 }

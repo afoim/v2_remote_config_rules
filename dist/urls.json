@@ -5,33 +5,78 @@
   ],
   "artifacts": {
     "dist/v2ray-rules.json": {
-      "raw": "https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/v2ray-rules.json",
+      "primary": "https://gh-proxy.com/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/v2ray-rules.json",
       "mirrors": [
-        "https://cdn.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/v2ray-rules.json",
-        "https://gcore.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/v2ray-rules.json",
-        "https://gh-proxy.com/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/v2ray-rules.json",
-        "https://ghfast.top/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/v2ray-rules.json",
-        "https://ghproxy.net/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/v2ray-rules.json"
+        {
+          "note": "国内实测可达，实时回源 raw，无缓存（第三方代理服务）",
+          "url": "https://gh-proxy.com/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/v2ray-rules.json"
+        },
+        {
+          "note": "国内实测可达，实时回源 raw（gh-proxy 的备用同类服务）",
+          "url": "https://ghproxy.net/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/v2ray-rules.json"
+        },
+        {
+          "note": "国内实测可达，走 CDN 有缓存延迟，适合规则稳定后使用",
+          "url": "https://cdn.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/v2ray-rules.json"
+        },
+        {
+          "note": "同上，jsDelivr 备用节点",
+          "url": "https://gcore.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/v2ray-rules.json"
+        },
+        {
+          "note": "GitHub 官方主源，海外或已翻墙设备首选；不在中国大陆直连（大陆访问被阻断）",
+          "url": "https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/v2ray-rules.json"
+        }
       ]
     },
     "dist/xray-client-config.json": {
-      "raw": "https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-client-config.json",
+      "primary": "https://gh-proxy.com/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-client-config.json",
       "mirrors": [
-        "https://cdn.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/xray-client-config.json",
-        "https://gcore.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/xray-client-config.json",
-        "https://gh-proxy.com/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-client-config.json",
-        "https://ghfast.top/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-client-config.json",
-        "https://ghproxy.net/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-client-config.json"
+        {
+          "note": "国内实测可达，实时回源 raw，无缓存（第三方代理服务）",
+          "url": "https://gh-proxy.com/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-client-config.json"
+        },
+        {
+          "note": "国内实测可达，实时回源 raw（gh-proxy 的备用同类服务）",
+          "url": "https://ghproxy.net/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-client-config.json"
+        },
+        {
+          "note": "国内实测可达，走 CDN 有缓存延迟，适合规则稳定后使用",
+          "url": "https://cdn.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/xray-client-config.json"
+        },
+        {
+          "note": "同上，jsDelivr 备用节点",
+          "url": "https://gcore.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/xray-client-config.json"
+        },
+        {
+          "note": "GitHub 官方主源，海外或已翻墙设备首选；不在中国大陆直连（大陆访问被阻断）",
+          "url": "https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-client-config.json"
+        }
       ]
     },
     "dist/xray-routing-increment.json": {
-      "raw": "https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-routing-increment.json",
+      "primary": "https://gh-proxy.com/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-routing-increment.json",
       "mirrors": [
-        "https://cdn.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/xray-routing-increment.json",
-        "https://gcore.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/xray-routing-increment.json",
-        "https://gh-proxy.com/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-routing-increment.json",
-        "https://ghfast.top/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-routing-increment.json",
-        "https://ghproxy.net/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-routing-increment.json"
+        {
+          "note": "国内实测可达，实时回源 raw，无缓存（第三方代理服务）",
+          "url": "https://gh-proxy.com/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-routing-increment.json"
+        },
+        {
+          "note": "国内实测可达，实时回源 raw（gh-proxy 的备用同类服务）",
+          "url": "https://ghproxy.net/https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-routing-increment.json"
+        },
+        {
+          "note": "国内实测可达，走 CDN 有缓存延迟，适合规则稳定后使用",
+          "url": "https://cdn.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/xray-routing-increment.json"
+        },
+        {
+          "note": "同上，jsDelivr 备用节点",
+          "url": "https://gcore.jsdelivr.net/gh/afoim/v2_remote_config_rules@main/dist/xray-routing-increment.json"
+        },
+        {
+          "note": "GitHub 官方主源，海外或已翻墙设备首选；不在中国大陆直连（大陆访问被阻断）",
+          "url": "https://raw.githubusercontent.com/afoim/v2_remote_config_rules/main/dist/xray-routing-increment.json"
+        }
       ]
     }
   }
